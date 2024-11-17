@@ -3,7 +3,7 @@ import zmq
 try:
     from googlesearch import search
 except ImportError:
-    print("No module named 'google' found")
+    print(">>> No module named 'google' found")
 
 
 def server_main():
@@ -12,32 +12,45 @@ def server_main():
     socket = context.socket(zmq.REP)
     socket.bind("tcp://*:5555")
 
-    print("Server is running... waiting for client requests.")
+    print(">>> Server running, waiting for client requests...")
 
     while True:
         request = socket.recv()  # Receive book title as string
         book_title = request.decode()
-        print(f"Received request from the client: {book_title}")
+        print(f">>> Received request from the client: '{book_title}'...")
+
+        if len(request) == 0:
+            empty_request = ">>> Search Failed: Request Empty"
+            print(f">>> Request empty")
+            socket.send_string(empty_request)
+            continue
+
+        if book_title == 'QSERVER':
+            print(f">>> Exiting Program...")
+            break  # Exit and Destroy Context
 
         # Perform Google Search
         results = perform_google_search(book_title)
-        print(f"Searching Google for: {book_title}")
+        print(f">>> Searching Google...")
 
         result, status = find_amazon_link(results)
-        print(f"Processing an Amazon link for: {book_title}")
+        print(f">>> Processing Amazon link...")
 
         # Prepare response
         if status:
-            print(f"Success! Found Amazon link")
-            print(f"Preparing successful search response")
+            print(f">>> Success: {result}")
         else:
-            print(f"Fail :( Can't find Amazon link")
-            print(f"Preparing failed search response")
+            print(f">>> Failed: {result}")
 
         response = result
 
         # Send response back to the client
-        socket.send(response)
+        socket.send_string(response)
+        continue
+
+        # Destroy and exit
+    context.destroy()
+
 
 
 def perform_google_search(query: str) -> list[str]:
@@ -76,5 +89,5 @@ def test():
 
 if __name__ == "__main__":
     server_main()
-    test()
+    # test()
 
