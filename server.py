@@ -80,14 +80,6 @@ def find_amazon_link(results: list[str]) -> (str, bool):
     return failed_response, status
 
 
-def test():
-    book_test = "The Catcher in the Rye"
-    results_test = perform_google_search(book_test)
-    result_test, status_test = find_amazon_link(results_test)
-    print(result_test)
-
-
 if __name__ == "__main__":
     server_main()
-    # test()
 
