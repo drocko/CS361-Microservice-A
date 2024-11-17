@@ -52,7 +52,6 @@ def server_main():
     context.destroy()
 
 
-
 def perform_google_search(query: str) -> list[str]:
     """Perform a Google search and return a list of URLs."""
     search_query = f"{query} book"
