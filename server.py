@@ -10,7 +10,7 @@ def server_main():
     """Main function to handle ZeroMQ server and book search microservice."""
     context = zmq.Context()
     socket = context.socket(zmq.REP)
-    socket.bind("tcp://*:5555")
+    socket.bind("tcp://0.0.0.0:5555")
 
     print(">>> Server running, waiting for client requests...")
 
@@ -24,10 +24,6 @@ def server_main():
             print(f">>> Request empty")
             socket.send_string(empty_request)
             continue
-
-        if book_title == 'QSERVER':
-            print(f">>> Exiting Program...")
-            break  # Exit and Destroy Context
 
         # Perform Google Search
         results = perform_google_search(book_title)

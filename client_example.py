@@ -5,17 +5,13 @@ def client_main():
     context = zmq.Context()
     print(">>> Client attempting to connect to server...")
     socket = context.socket(zmq.REQ)
-    socket.connect("tcp://localhost:5555")
+    server_ip = "192.168.123.132"  # Replace with actual IP
+    socket.connect(f"tcp://{server_ip}:5555")
 
     while True:
-        input_string = input("Enter a book to lookup? (Enter Q to quit): ")
+        input_string = input("Enter a book to lookup? ")
         if input_string.upper() == "Q":
             print(f">>> Exiting Program...")
-            context.destroy()
-            break
-        elif input_string.upper() == "QSERVER":
-            print(f">>> Exiting Program...")
-            socket.send_string("QSERVER")
             context.destroy()
             break
         else:
