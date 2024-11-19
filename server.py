@@ -24,6 +24,12 @@ def server_main():
             print(f">>> Request empty")
             socket.send_string(empty_request)
             continue
+        if book_title.upper() == "QSERVER":
+            # Warning: this will completely shut down server
+            socket.send_string('Closing server application')
+            context.destroy()
+            break
+
 
         # Perform Google Search
         results = perform_google_search(book_title)
