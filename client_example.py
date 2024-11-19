@@ -19,6 +19,7 @@ def client_main():
             socket.send_string(input_string)
             message = socket.recv()
             print(f">>> Server sent back: {message.decode()}")
+    context.destroy()
 
 
 if __name__ == '__main__':
