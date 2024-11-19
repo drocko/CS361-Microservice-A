@@ -14,7 +14,7 @@ Communication is done via ***ZeroMQ*** using the ***REQ/REP*** messaging pattern
 - **Port**: `5555`
 - **Server Address**: `tcp://<Server IP>:5555`
 
-## Programmatically REQUEST data
+## Programmatically REQUEST data (3a)
 
 To request data, send the book title **(string)** to the server using a REQ socket. The server processes it and sends a response.
 
@@ -35,7 +35,7 @@ socket.connect(f"tcp://{server_ip}:5555")
 book_title = "The Catcher in the Rye"
 socket.send_string(book_title)
 ```
-## Programmatically RECEIVE data
+## Programmatically RECEIVE data (3b)
 
 The client receives the server's response (Amazon link or error) via the same **REQ** socket using `recv_string()`.
 
@@ -46,3 +46,8 @@ The client receives the server's response (Amazon link or error) via the same **
 response = socket.recv_string()
 print(f"Server response: {response}")
 ```
+## UML Sequence Diagram (3c)
+![UML Sequence Diagram](assets/UML%20Sequence%20Diagram%20CS361.jpg)
+
+
+
