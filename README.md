@@ -47,7 +47,7 @@ response = socket.recv_string()
 print(f"Server response: {response}")
 ```
 ## UML Sequence Diagram (3c)
-![UML Sequence Diagram](https://www.plantuml.com/plantuml/png/ZT6nJiD030RW_PxY7zkXF003Akh0n58U83fI9x5wiOFjCF3qv48P8eJKAT79dt_BFdfaYtaiQLg-tFAK9N0gJ1ARfrTkJPtiarjAgQXEEAa4owopuqmVCtaSpkIJYbC2SEk2mzC6un5l91UygruH78MmomuFO-dtgSfj_Ly_aNLgOzEhzeKQfspjiDklL3G8nlqGq6u3Qsuj9CVB2h4qGGoqZl9mLtB7ScdocBzKci9olIFqJ36RU0rQk7dWUVMe7ch80Z9J-sU2snP_6stqJkt7OYJttDC-rTNMwwHqN7wNmtu3)
+![UML Sequence Diagram](assets/UML%20Sequence%20Diagram.png)
 
 
 
