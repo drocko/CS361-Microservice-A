@@ -6,7 +6,8 @@ def client_main():
     print(">>> Client attempting to connect to server...")
     socket = context.socket(zmq.REQ)
     server_ip = "192.168.123.132"  # Replace with actual IP
-    socket.connect(f"tcp://{server_ip}:5555")
+    socket.connect(f"tcp://localhost:5555") #Software won't run request unless I change this to localhost.
+                                            #Looks like maybe the online server isn't working?
 
     while True:
         input_string = input("Enter a book to lookup? ")
